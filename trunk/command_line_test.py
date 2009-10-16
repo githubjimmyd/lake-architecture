@@ -2,14 +2,15 @@
 #Dr. Jim Davies (jim@jimdavies.org)
 
 ######################################################
-####The lake environment in which all things happen###
+####           The Lake Command Interface          ###
 ######################################################
 
 import cmd
 import string, sys
+import os
 
 class LakeCmdInterface(cmd.Cmd):
-
+    
     def __init__(self):
         cmd.Cmd.__init__(self)
         print("Welcome to the Lake Cognitive Architecture, type 'help' for basic instructions.")
@@ -17,9 +18,20 @@ class LakeCmdInterface(cmd.Cmd):
 
     def do_quit(self, arg):
         return True
+    
 
     def do_inventory(self, *args):
         #args = [] of arguments
+        #all objects are really <obj_objectName> folders.  i.e. <obj_basicAgent>
+        currentpath = os.getcwd()
+        inventory = currentpath + "\\inventory"
+        
+        for things in os.listdir(inventory):
+            if os.path.isdir(things):
+                print(things[0:3])
+                if (things[0:3] == "obj_"):
+                    print(things[3:])
+                
         
 
 ##    def onecmd(self, s):
