@@ -27,11 +27,11 @@ class LakeCmdInterface(cmd.Cmd):
         inventory = currentpath + "\inventory"
         
         for things in os.listdir(inventory):
-            print(things)
             if os.path.isdir(os.path.join(inventory,things)):
-                print(things[0:3], "is a folder")
-                if (things[0:3] == "obj_"):
-                    print(things[3:])
+                #then it's a folder, not a file
+                if (things[0:4] == "obj_"):
+                    #then it begin's with obj_ and is an object
+                    print(things[4:])#lists the objects
                 
         
 
@@ -44,12 +44,10 @@ class LakeCmdInterface(cmd.Cmd):
         print("syntax: quit")
         print("-- terminates the application")
 
-    def do_create(self, arg):
-        if arg == "":
-            self.help_create()
-        #currentpath = os.getcwd()
-        #inventory = currentpath + "\inventory"
-        #os.mkdir(inventory + "\obj_basicAgent")
+    def do_create(self, *args):
+        #args = [] of arguments
+        #create <obj_> called <name>
+        
 
     def help_create(self):
         print("")
