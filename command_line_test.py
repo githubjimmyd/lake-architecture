@@ -24,11 +24,12 @@ class LakeCmdInterface(cmd.Cmd):
         #args = [] of arguments
         #all objects are really <obj_objectName> folders.  i.e. <obj_basicAgent>
         currentpath = os.getcwd()
-        inventory = currentpath + "\\inventory"
+        inventory = currentpath + "\inventory"
         
         for things in os.listdir(inventory):
-            if os.path.isdir(things):
-                print(things[0:3])
+            print(things)
+            if os.path.isdir(os.path.join(inventory,things)):
+                print(things[0:3], "is a folder")
                 if (things[0:3] == "obj_"):
                     print(things[3:])
                 
@@ -46,7 +47,9 @@ class LakeCmdInterface(cmd.Cmd):
     def do_create(self, arg):
         if arg == "":
             self.help_create()
-        
+        #currentpath = os.getcwd()
+        #inventory = currentpath + "\inventory"
+        #os.mkdir(inventory + "\obj_basicAgent")
 
     def help_create(self):
         print("")
