@@ -24,3 +24,10 @@ def check_inventory(aName):#check the inventory for an object by name (all store
     return False
     
     
+def inventory_copy(inventory_object, newInstance):
+    if parent.current_project == None:
+        return print("Please enter project space or create new project")#redundant check
+
+    print("copy...")
+
+    
