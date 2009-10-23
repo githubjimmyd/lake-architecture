@@ -12,7 +12,7 @@ import string, sys
 from project_tools import *
 from object_tools import *
 from module_tools import *
-from inventory_tools import *
+#from inventory_tools import *   #phase this out?
 
 
 class LakeCmdInterface(cmd.Cmd):
@@ -128,6 +128,12 @@ class LakeCmdInterface(cmd.Cmd):
     def do_attach(self, args):
         #for attaching a module to another object
         args = args.split()
+
+
+    def start(self, args):
+        #starting the simulation
+        args = args.split()
+        
         
 
         
