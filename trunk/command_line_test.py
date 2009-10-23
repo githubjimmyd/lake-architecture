@@ -10,11 +10,14 @@ import string, sys
 
 
 from project_tools import *
+from object_tools import *
+from module_tools import *
 from inventory_tools import *
 
+
 class LakeCmdInterface(cmd.Cmd):
-    current_project = None
-    current_project_name = None
+    current_project = None #path of current project
+    current_project_name = None #name of current project (last thing in path)
     
     def __init__(self):
         cmd.Cmd.__init__(self)
@@ -32,9 +35,9 @@ class LakeCmdInterface(cmd.Cmd):
         if len(args) == 0:
             return print("Too few arguments.  See 'help enter'")
         if is_project(args[0]):
-            current_project = get_project_path_by_name(args[0])
-            current_project_name = args[0]
-            print("Now in project", current_project_name)
+            self.current_project = get_project_path_by_name(args[0])
+            self.current_project_name = args[0]
+            print("Now in project", self.current_project_name)
         else:
             return print("No such project.  Type 'projects' for a list of your projects.")
 
@@ -44,7 +47,19 @@ class LakeCmdInterface(cmd.Cmd):
 
     def do_inventory(self, args):
         #all objects are really <obj_objectName> folders.  i.e. <obj_basicAgent>
-        list_inventory()#from inventory_tools
+        inventory_objects = get_objects_list_names()
+        modules = get_modules_list_names()
+        
+        
+        
+        #printing fancy.
+        #replace me
+        i = 0
+        
+        x = (len(inventory_objects) if (len(inventory_objects) >= len(modules)) else len(modules))
+        while i < x:
+            print("%22s %22s" %(inventory_objects[i],modules[i]))
+            i += 1
          
     def help_inventory(self):
         print("syntax: inventory")
@@ -72,10 +87,11 @@ class LakeCmdInterface(cmd.Cmd):
 
     def do_create(self, args):
         args = args.split()
+        #get rid of all the wrong syntax cases first.
         if len(args) == 0:
             return print("Not enough arguments. See 'help create'.")
         if not args[1] == "called":
-            return print("Proper use: create", args[0], "called <a name>")
+            return print("Proper use: create", args[0], "called", args[2])
         if len(args) > 3:
             return print("Too many argument")
         #create <obj_> called <name>
@@ -84,12 +100,16 @@ class LakeCmdInterface(cmd.Cmd):
         ###project case###
         if args[0] == "project":
             create_project(args[2])
+        elif args[0] == "module":
+            create_module(args[2])
         
-        elif check_inventory(args[0]): #check to see if there is a template in the inventory, True/False from inventory_tools
+        elif check_for_object_in_inventory(args[0]): #check to see if there is a template in the inventory, True/False from object_tools
             if self.current_project == None:
                 return print("Please enter project space or create new project")
             else:
-                print("In a project, now what?")
+                create_object(self.current_project, args[0])
+        else:
+            return print("Incorrect syntax.  See 'help create'")
 
             inventory_copy(args[0],args[2])   
             
@@ -98,14 +118,17 @@ class LakeCmdInterface(cmd.Cmd):
 
     def help_create(self):
         print("syntax 1: create <object> called <name>")
-        print("-- creates an instance of a template object from inventory.")
+        print("-- creates an instance of a template object from inventory.  See 'inventory' for inventory items.")
         print("syntax 2: create project called <name>")
         print("-- creates a new project space used to contain models and environments")
 
 
         
 
-
+    def do_attach(self, args):
+        #for attaching a module to another object
+        args = args.split()
+        
 
         
             
