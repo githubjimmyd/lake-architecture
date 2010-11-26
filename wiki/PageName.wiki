@@ -1,0 +1,11 @@
+#summary Overview of this wiki
+= Introduction =
+
+Lake is the cognitive architecture of Dr. Jim Davies's Science of Imagination Laboratory (SOIL). This wiki is primarily for the implementation, rather than the theory, of Lake.
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
