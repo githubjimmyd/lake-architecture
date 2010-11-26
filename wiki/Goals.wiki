@@ -1,0 +1,4 @@
+#summary Goals of the Lake Architecture
+= Goals =
+  * It will be a cognitive architecture.
+  * 
