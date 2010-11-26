@@ -6,4 +6,4 @@ Lake is the cognitive architecture of Dr. Jim Davies's Science of Imagination La
 = Details =
 
 Sections
-  * Goals of the Architecture
+  * *Goals of the Architecture*
