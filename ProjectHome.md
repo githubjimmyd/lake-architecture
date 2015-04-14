@@ -1,0 +1,1 @@
+A cognitive modeling architecture out of Carleton University based on a resource-distribution model of parallel control. Invented by Dr. Jim Davies (jim@jimdavies.org).
